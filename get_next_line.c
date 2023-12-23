@@ -68,8 +68,7 @@ char	*ft_return_line_as_string(char *string_1)
 
 	index_3 = 0;
 	index_4 = 0;
-	storing_4 = malloc(sizeof(char) * (ft_strlen(ft_strchr(string_1, '\n'))
-				+ 1));
+	storing_4 = malloc(sizeof(char) * (ft_strlen(ft_strchr(string_1, '\n')) + 1));
 	while (string_1[index_3] != '\0')
 	{
 		if (string_1[index_3] == '\n')
@@ -95,7 +94,12 @@ char	*get_next_line(int fd)
 		return (0);
 	storing_3 = ft_store_line(storing_3, fd);
 	if (storing_3 == 0 || storing_3[0] == '\0')
+	{
+		if (storing_3)
+			free(storing_3);
+		storing_3 = NULL;
 		return (NULL);
+	}
 	line_read = ft_return_number_bytes_read(storing_3);
 	if (ft_strchr(storing_3, '\n'))
 		storing_3 = ft_return_line_as_string(storing_3);
@@ -107,23 +111,23 @@ char	*get_next_line(int fd)
 	return (line_read);
 }
 
-// int	main(void)
-// {
-// 	int fd;
-// 	char *line;
+int	main(void)
+{
+	int fd;
+	char *line;
 
-// 	fd = open("test.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	// 	printf("%s", line);
-// 	// 	free(line);
-// 	// 	line = get_next_line(fd);
-// 	// 	printf("%s", line);
-// 	// 	free(line);
-// 	while (line != NULL)
-// 	{
-// 		printf("%s", line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	return (0);
-// }
+	fd = open("41_no_nl", O_RDONLY);
+	line = get_next_line(fd);
+	// 	printf("%s", line);
+	// 	free(line);
+	// 	line = get_next_line(fd);
+	// 	printf("%s", line);
+	// 	free(line);
+	while (line != NULL)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (0);
+}
