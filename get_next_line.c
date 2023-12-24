@@ -6,7 +6,7 @@
 /*   By: ral-bakr <ral-bakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 19:56:29 by ral-bakr          #+#    #+#             */
-/*   Updated: 2023/12/23 20:04:11 by ral-bakr         ###   ########.fr       */
+/*   Updated: 2023/12/24 15:30:49 by ral-bakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ char	*ft_return_line_as_string(char *string_1)
 
 	index_3 = 0;
 	index_4 = 0;
-	storing_4 = malloc(sizeof(char) * (ft_strlen(ft_strchr(string_1, '\n')) + 1));
+	storing_4 = malloc(sizeof(char) * (
+				ft_strlen(ft_strchr(string_1, '\n')) + 1));
 	while (string_1[index_3] != '\0')
 	{
 		if (string_1[index_3] == '\n')
@@ -111,23 +112,23 @@ char	*get_next_line(int fd)
 	return (line_read);
 }
 
-int	main(void)
-{
-	int fd;
-	char *line;
+// int	main(void)
+// {
+// 	int fd;
+// 	char *line;
 
-	fd = open("41_no_nl", O_RDONLY);
-	line = get_next_line(fd);
-	// 	printf("%s", line);
-	// 	free(line);
-	// 	line = get_next_line(fd);
-	// 	printf("%s", line);
-	// 	free(line);
-	while (line != NULL)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (0);
-}
+// 	fd = open("41_no_nl", O_RDONLY);
+// 	line = get_next_line(fd);
+// 	// 	printf("%s", line);
+// 	// 	free(line);
+// 	// 	line = get_next_line(fd);
+// 	// 	printf("%s", line);
+// 	// 	free(line);
+// 	while (line != NULL)
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// 	return (0);
+// }
