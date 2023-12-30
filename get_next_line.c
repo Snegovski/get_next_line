@@ -6,7 +6,7 @@
 /*   By: ral-bakr <ral-bakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 19:56:29 by ral-bakr          #+#    #+#             */
-/*   Updated: 2023/12/24 15:30:49 by ral-bakr         ###   ########.fr       */
+/*   Updated: 2023/12/30 17:09:38 by ral-bakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,56 +37,60 @@ char	*ft_store_line(char *line, int fd)
 	return (line);
 }
 
-char	*ft_return_number_bytes_read(char *retur)
+char	*ft_returned_line(char *the_new_stringjoined_line)
 
 {
-	int		index_1;
-	int		index_2;
+	int		counting_length;
+	int		value_assignment_of_joined_string;
 	char	*storing_2;
 
-	index_1 = 0;
-	while (retur[index_1] != '\0' && retur[index_1] != '\n')
-		index_1++;
-	if (retur[index_1] == '\n')
-		index_1++;
-	storing_2 = malloc(sizeof(char) * (index_1 + 1));
+	counting_length = 0;
+	while (the_new_stringjoined_line[counting_length] != '\0'
+		&& the_new_stringjoined_line[counting_length] != '\n')
+		counting_length++;
+	if (the_new_stringjoined_line[counting_length] == '\n')
+		counting_length++;
+	storing_2 = malloc(sizeof(char) * (counting_length + 1));
 	if (storing_2 == NULL)
 		return (NULL);
-	index_2 = -1;
-	while (++index_2 < index_1)
-		storing_2[index_2] = retur[index_2];
-	storing_2[index_2] = '\0';
+	value_assignment_of_joined_string = -1;
+	while (++value_assignment_of_joined_string < counting_length)
+		storing_2[value_assignment_of_joined_string]
+			= the_new_stringjoined_line[value_assignment_of_joined_string];
+	storing_2[value_assignment_of_joined_string] = '\0';
 	return (storing_2);
 }
 
-char	*ft_return_line_as_string(char *string_1)
+char	*ft_save_extra_characters_after_new_line(char *string_1)
 
 {
-	int		index_3;
-	int		index_4;
+	int		finding_newline;
+	int		assigment_for_storing_4;
 	char	*storing_4;
 
-	index_3 = 0;
-	index_4 = 0;
+	finding_newline = 0;
+	assigment_for_storing_4 = 0;
 	storing_4 = malloc(sizeof(char) * (
 				ft_strlen(ft_strchr(string_1, '\n')) + 1));
-	while (string_1[index_3] != '\0')
+	if (storing_4 == NULL)
+		return (NULL);
+	while (string_1[finding_newline] != '\0')
 	{
-		if (string_1[index_3] == '\n')
+		if (string_1[finding_newline] == '\n')
 		{
-			while (string_1[++index_3] != '\0')
-				storing_4[index_4++] = string_1[index_3];
+			while (string_1[++finding_newline] != '\0')
+				storing_4[assigment_for_storing_4++]
+					= string_1[finding_newline];
 			break ;
 		}
-		index_3++;
+		finding_newline++;
 	}
-	storing_4[index_4] = '\0';
+	storing_4[assigment_for_storing_4] = '\0';
 	free(string_1);
 	return (storing_4);
 }
 
 char	*get_next_line(int fd)
-
 {
 	char		*line_read;
 	static char	*storing_3;
@@ -94,16 +98,16 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE < 0 || BUFFER_SIZE > 2147483647)
 		return (0);
 	storing_3 = ft_store_line(storing_3, fd);
-	if (storing_3 == 0 || storing_3[0] == '\0')
+	if (storing_3 == NULL || storing_3[0] == '\0')
 	{
-		if (storing_3)
+		if (storing_3 != NULL)
 			free(storing_3);
 		storing_3 = NULL;
 		return (NULL);
 	}
-	line_read = ft_return_number_bytes_read(storing_3);
+	line_read = ft_returned_line(storing_3);
 	if (ft_strchr(storing_3, '\n'))
-		storing_3 = ft_return_line_as_string(storing_3);
+		storing_3 = ft_save_extra_characters_after_new_line(storing_3);
 	else
 	{
 		free(storing_3);
@@ -111,24 +115,3 @@ char	*get_next_line(int fd)
 	}
 	return (line_read);
 }
-
-// int	main(void)
-// {
-// 	int fd;
-// 	char *line;
-
-// 	fd = open("41_no_nl", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	// 	printf("%s", line);
-// 	// 	free(line);
-// 	// 	line = get_next_line(fd);
-// 	// 	printf("%s", line);
-// 	// 	free(line);
-// 	while (line != NULL)
-// 	{
-// 		printf("%s", line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	return (0);
-// }

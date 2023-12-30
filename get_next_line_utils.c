@@ -6,7 +6,7 @@
 /*   By: ral-bakr <ral-bakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 19:55:12 by ral-bakr          #+#    #+#             */
-/*   Updated: 2023/12/23 19:55:16 by ral-bakr         ###   ########.fr       */
+/*   Updated: 2023/12/30 16:21:01 by ral-bakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	*ft_strchr(const char *s, int c)
 		return (NULL);
 	return (str);
 }
-
 
 size_t	ft_strlen(char const *str)
 {

@@ -6,7 +6,7 @@
 /*   By: ral-bakr <ral-bakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 19:55:53 by ral-bakr          #+#    #+#             */
-/*   Updated: 2023/12/23 19:56:05 by ral-bakr         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:16:54 by ral-bakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@
 #  define BUFFER_SIZE 1 
 # endif
 
-
 char	*ft_strdup(char *str);
 size_t	ft_strlen(char const *str);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 
-char *ft_store_line(char *line, int fd);
-char *ft_return_number_bytes_read(char *retur);
-char *ft_return_line_as_string(char *string_1);
-char *get_next_line(int fd);
+char	*ft_store_line(char *line, int fd);
+char	*ft_save_extra_characters_after_new_line(char *string_1);
+char	*ft_returned_line(char *the_new_stringjoined_line);
+char	*get_next_line(int fd);
 
 #endif
